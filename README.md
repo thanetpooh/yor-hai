@@ -1,4 +1,4 @@
-## Developed a scalable URL shortener service with high-performance URL redirection and efficient data handling. Designed RESTful APIs for generating and resolving short URLs with Redis-powered caching to optimize response time and scalability.
+## Web application scalable URL shortener service with high-performance URL redirection and efficient data handling. Designed RESTful APIs for generating and resolving short URLs with Redis-powered caching to optimize response time and scalability.
 
 ## Tech Stack:
 
