@@ -1,11 +1,12 @@
-const express = require("express");
+import express from "express";
+import { env } from "./config/env.js";
+import urlRoutes from "./routes/urlRoutes.js";
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Yor");
-});
+app.use(express.json());
+app.use(urlRoutes);
 
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
+app.listen(env.PORT, () => {
+  console.log(`Server running on port ${env.PORT}`);
 });
