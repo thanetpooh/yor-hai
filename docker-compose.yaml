@@ -1,4 +1,32 @@
 services:
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - API_TARGET=http://backend:3000  # Vite proxy target inside Docker network
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend/.env
+    environment:
+      - REDIS_HOST=redis  # override .env for docker networking
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - redis
+
   redis:
     image: redis:alpine
     container_name: redis
@@ -7,17 +35,5 @@ services:
     volumes:
       - redis-data:/data
 
-  app:
-    build: .
-    container_name: backend
-    ports:
-      - "3000:3000"
-    env_file:
-      - .env
-    volumes:
-      - .:/app
-      - /app/node_modules
-    depends_on:
-      - redis
 volumes:
   redis-data:
