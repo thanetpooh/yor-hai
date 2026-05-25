@@ -1,63 +1,98 @@
-# 🔗 Yor-Hai — URL Shortener API
+# 🔗 Yor-Hai — URL Shortener + QR Generator
 
-A RESTful URL shortening service built with **Node.js**, **Express**, and **Redis**.  
-Generates short codes, redirects users, enforces rate limiting, and expires links automatically — all containerised with Docker.
+A full-stack URL shortening service with a QR code generator UI.  
+Backend: **Node.js + Express + Redis**. Frontend: **React + TypeScript + Tailwind + DaisyUI**.
+
+---
+
+## 📁 Project structure
+
+```
+yor-hai/
+├── backend/          ← Express API + Redis
+│   ├── app.js
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── validators/
+│   ├── Dockerfile
+│   └── package.json
+├── frontend/         ← React + Vite SPA (Snip & Scan UI)
+│   ├── src/
+│   ├── index.html
+│   └── package.json
+├── docker-compose.yaml
+└── README.md
+```
 
 ---
 
 ## ✨ Features
 
-- **Shorten URLs** — generates a unique 6-character short code per URL
-- **Instant redirect** — resolves a short code and redirects to the original URL
+- **Shorten URLs** — generates a unique 6-character short code
+- **QR code** — served as PNG or SVG from the backend
+- **Instant redirect** — resolves short code and redirects
 - **Auto-expiry** — links expire after **30 days** via Redis TTL
-- **Rate limiting** — max **10 requests / 15 min per IP** on the shorten endpoint
-- **Input validation** — accepts HTTPS URLs only, powered by Zod schema validation
-- **Dockerised** — single `docker compose up` spins up the app and Redis together
+- **Rate limiting** — max **10 requests / 15 min** on the shorten endpoint
+- **Input validation** — HTTPS URLs only, validated with Zod
+- **History** — last 20 links stored in `localStorage`
+- **Dockerised** — single `docker compose up` spins everything up
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer            | Technology               |
-| ---------------- | ------------------------ |
-| Runtime          | Node.js 20+ (ES Modules) |
-| Framework        | Express.js v5            |
-| Database         | Redis 7                  |
-| Validation       | Zod v4                   |
-| Rate Limiting    | express-rate-limit       |
-| Containerisation | Docker + Docker Compose  |
+| Layer      | Technology                     |
+| ---------- | ------------------------------ |
+| Runtime    | Node.js 20+ (ES Modules)       |
+| Framework  | Express.js v5                  |
+| Database   | Redis 7                        |
+| Validation | Zod v4                         |
+| Rate limit | express-rate-limit             |
+| UI         | React 18 + TypeScript          |
+| Styling    | Tailwind CSS v3 + DaisyUI v4   |
+| Bundler    | Vite 5                         |
+| Containers | Docker + Docker Compose        |
 
 ---
 
 ## 🚀 Getting Started
 
-### Prerequisites
-
-- [Docker](https://www.docker.com/) installed
-
-### Run with Docker
+### Run with Docker (recommended)
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/<your-username>/yor-hai.git
-cd yor-hai
-
-# 2. Copy env file and adjust if needed
-cp .env.example .env
-
-# 3. Start app + Redis
+cp backend/.env.example backend/.env
 docker compose up --build
 ```
 
-The API will be available at `http://localhost:3000`.
+- API → `http://localhost:3000`
+- Frontend dev server → `http://localhost:5173` (run separately, see below)
 
 ### Run locally (without Docker)
 
 ```bash
-npm install
+# Terminal 1 — backend (requires Redis on localhost:6379)
+cd backend
 cp .env.example .env
-# Make sure a Redis instance is running on localhost:6379
+npm install
+npm run dev
+
+# Terminal 2 — frontend
+cd frontend
+npm install
 npm run dev
 ```
 
+Open `http://localhost:5173` — the Vite dev server proxies `/api` to `localhost:3000`.
+
 ---
+
+## 🔌 API
+
+| Method | Endpoint              | Description                        |
+| ------ | --------------------- | ---------------------------------- |
+| POST   | `/api/shorten`        | Shorten a URL → `{ shortUrl, qrUrl, ... }` |
+| GET    | `/api/qr/:shortCode`  | QR image (`?format=png\|svg`)      |
+| GET    | `/:shortCode`         | Redirect to original URL           |
