@@ -43,7 +43,6 @@ export async function getQrCode(req, res) {
 
     res.setHeader("Content-Type", "image/png");
     res.setHeader("Content-Length", buffer.length);
-    res.setHeader("Cache-Control", "public, max-age=86400"); // cache 24h (QR won't change)
     return res.status(200).send(buffer);
   } catch (error) {
     console.error(error);
