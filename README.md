@@ -1,6 +1,5 @@
 # 🔗 Yor-Hai — URL Shortener + QR Generator
-<img width="1252" height="886" alt="Image" src="https://github.com/user-attachments/assets/1f1af6c5-4143-4095-aac3-54c6c1948249" />
-
+<img width="1252" height="886" alt="Image" src="https://github.com/user-attachments/assets/834ebc8b-c439-4551-9abc-3af48933b893" />
 A full-stack URL shortening service with a QR code generator UI.  
 Backend: **Node.js + Express + Upstash Redis**. Frontend: **React + TypeScript + Tailwind**.
 
