@@ -1,7 +1,8 @@
 import type { ShortenResponse } from "./types";
 
 export async function shortenUrl(url: string): Promise<ShortenResponse> {
-  const res = await fetch("/api/shorten", {
+  const base = import.meta.env.VITE_API_URL ?? "";
+  const res = await fetch(`${base}/api/shorten`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ url }),
