@@ -1,7 +1,7 @@
 # 🔗 Yor-Hai — URL Shortener + QR Generator
 
 A full-stack URL shortening service with a QR code generator UI.  
-Backend: **Node.js + Express + Redis**. Frontend: **React + TypeScript + Tailwind + DaisyUI**.
+Backend: **Node.js + Express + Upstash Redis**. Frontend: **React + TypeScript + Tailwind**.
 
 ---
 
@@ -12,27 +12,38 @@ Backend: **Node.js + Express + Redis**. Frontend: **React + TypeScript + Tailwin
 - **Instant redirect** — resolves short code and redirects
 - **Auto-expiry** — links expire after **30 days** via Redis TTL
 - **Rate limiting** — max **10 requests / 15 min** on the shorten endpoint
-- **Input validation** — HTTPS URLs only, validated with Zod
-- **Dockerised** — single `docker compose up` spins everything up
+- **Input validation** — HTTP/HTTPS URLs only, validated with Zod
+
+---
 
 ## 🚀 Getting Started
 
-### Run with Docker (recommended)
+### Prerequisites
+
+Create **Upstash Redis** database free from [upstash.com](https://upstash.com) you will get `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`
+
+---
+
+### Run with Docker
 
 ```bash
 cp backend/.env.example backend/.env
+# edit your config on backend/.env
 docker compose up --build
 ```
 
-- API → `http://localhost:3000`
-- Frontend dev server → `http://localhost:5173` (run separately, see below)
+- Backend → `http://localhost:3000`
+- Frontend → `http://localhost:5173`
+
+---
 
 ### Run locally (without Docker)
 
 ```bash
-# Terminal 1 — backend (requires Redis on localhost:6379)
+# Terminal 1 — backend
 cd backend
 cp .env.example .env
+# edit .env
 npm install
 npm run dev
 
@@ -41,5 +52,3 @@ cd frontend
 npm install
 npm run dev
 ```
-
-Open `http://localhost:5173` — the Vite dev server proxies `/api` to `localhost:3000`.
