@@ -13,7 +13,7 @@ export default defineConfig({
       },
     },
     watch: {
-      usePolling: true,
+      usePolling: true, // hot reload for docker
     },
   },
 });

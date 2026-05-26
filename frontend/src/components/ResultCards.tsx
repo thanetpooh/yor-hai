@@ -19,17 +19,15 @@ export function ResultCards({ result, onCopy }: Props) {
   }
 
   return (
-    <section className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
+    <section className=" mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 ">
       {/* short link version */}
       <div className="relative rounded-2xl border border-rule bg-card p-6">
         <span className="absolute right-4 top-4 font-mono text-xs uppercase tracking-widest text-ink-muted">
           ลิงก์สั้น
         </span>
 
-        <h3 className="mb-1 font-serif text-2xl font-normal">ลิงก์ของคุณ</h3>
-        <p className="mb-5 font-mono text-xs text-ink-muted">
-          redirect ผ่าน server ของคุณเอง
-        </p>
+        <h3 className="mb-1 font-serif text-2xl font-thai">ลิงก์ของคุณ</h3>
+        <p className="mb-5 font-thai text-xs text-ink-muted">เข้าถึงได้ทันที</p>
 
         <div className="flex items-center gap-2 rounded-xl border border-dashed border-rule-strong bg-skin px-4 py-3.5">
           <a

@@ -5,30 +5,6 @@ Backend: **Node.js + Express + Redis**. Frontend: **React + TypeScript + Tailwin
 
 ---
 
-## 📁 Project structure
-
-```
-yor-hai/
-├── backend/          ← Express API + Redis
-│   ├── app.js
-│   ├── config/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── validators/
-│   ├── Dockerfile
-│   └── package.json
-├── frontend/         ← React + Vite SPA (Snip & Scan UI)
-│   ├── src/
-│   ├── index.html
-│   └── package.json
-├── docker-compose.yaml
-└── README.md
-```
-
----
-
 ## ✨ Features
 
 - **Shorten URLs** — generates a unique 6-character short code
@@ -37,26 +13,7 @@ yor-hai/
 - **Auto-expiry** — links expire after **30 days** via Redis TTL
 - **Rate limiting** — max **10 requests / 15 min** on the shorten endpoint
 - **Input validation** — HTTPS URLs only, validated with Zod
-- **History** — last 20 links stored in `localStorage`
 - **Dockerised** — single `docker compose up` spins everything up
-
----
-
-## 🛠️ Tech Stack
-
-| Layer      | Technology                     |
-| ---------- | ------------------------------ |
-| Runtime    | Node.js 20+ (ES Modules)       |
-| Framework  | Express.js v5                  |
-| Database   | Redis 7                        |
-| Validation | Zod v4                         |
-| Rate limit | express-rate-limit             |
-| UI         | React 18 + TypeScript          |
-| Styling    | Tailwind CSS v3 + DaisyUI v4   |
-| Bundler    | Vite 5                         |
-| Containers | Docker + Docker Compose        |
-
----
 
 ## 🚀 Getting Started
 
@@ -86,13 +43,3 @@ npm run dev
 ```
 
 Open `http://localhost:5173` — the Vite dev server proxies `/api` to `localhost:3000`.
-
----
-
-## 🔌 API
-
-| Method | Endpoint              | Description                        |
-| ------ | --------------------- | ---------------------------------- |
-| POST   | `/api/shorten`        | Shorten a URL → `{ shortUrl, qrUrl, ... }` |
-| GET    | `/api/qr/:shortCode`  | QR image (`?format=png\|svg`)      |
-| GET    | `/:shortCode`         | Redirect to original URL           |
