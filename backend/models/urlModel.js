@@ -4,8 +4,8 @@ const URL_TTL = 60 * 60 * 24 * 30; // 30 days in seconds
 
 export async function saveUrl(shortCode, originalUrl) {
   return client.set(shortCode, originalUrl, {
-    NX: true,
-    EX: URL_TTL,
+    nx: true,
+    ex: URL_TTL,
   });
 }
 
