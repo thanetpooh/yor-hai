@@ -19,7 +19,6 @@ export async function shortenUrl(url: string): Promise<ShortenResponse> {
   }
 
   const qrPath = new URL(data.qrUrl).pathname;
-  console.log("qrPath is", qrPath);
 
-  return { ...data, qrUrl: qrPath };
+  return { ...data, qrUrl: `${base}${qrPath}` };
 }
