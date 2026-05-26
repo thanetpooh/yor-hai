@@ -24,9 +24,10 @@ const config: Config = {
         danger: '#a83030',
       },
       fontFamily: {
-        sans: ['"Geist"', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
-        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+        sans: ['"Kanit"', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"Kanit"', 'ui-monospace', 'monospace'],
+        serif: ['"Kanit"', 'Georgia', 'serif'],
+        thai: ['"Kanit"', 'system-ui', 'sans-serif'],
       },
     },
   },
