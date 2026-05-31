@@ -10,6 +10,4 @@ app.use(cors({ methods: ["GET", "POST"] }));
 app.use(express.json());
 app.use(urlRoutes);
 
-app.listen(env.PORT, () => {
-  console.log(`Server running on port ${env.PORT}`);
-});
+export default app;

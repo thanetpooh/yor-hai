@@ -4,9 +4,9 @@
   "description": "Tech Stack:",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -L --env-file=.env app.js",
-    "start": "node --env-file-if-present=.env app.js"
+    "test": "vitest run",
+    "dev": "nodemon -L --env-file=.env server.js",
+    "start": "node --env-file-if-present=.env server.js"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +24,9 @@
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
-    "nodemon": "^3.1.14"
+    "dotenv": "^17.4.2",
+    "nodemon": "^3.1.14",
+    "supertest": "^7.2.2",
+    "vitest": "^4.1.7"
   }
 }
