@@ -23,7 +23,7 @@ export async function shortenUrl(req, res) {
       success = await saveUrl(shortCode, url);
     }
 
-    return res.status(200).json({
+    return res.status(201).json({
       originalUrl: url,
       shortUrl: `${env.BASE_URL}/${shortCode}`,
       qrUrl: `${env.BASE_URL}/api/qr/${shortCode}`,
