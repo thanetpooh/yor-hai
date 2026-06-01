@@ -4,10 +4,10 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm ci --omit=dev
 
 COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "run" , "dev"]
+CMD ["node", "--env-file-if-present=.env", "server.js"]
