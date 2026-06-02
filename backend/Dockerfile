@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["node", "--env-file-if-present=.env", "server.js"]
+CMD ["node", "server.js"]
