@@ -48,7 +48,7 @@ jobs:
         with:
           context: ./backend
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/yor-hai:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/yor-hai-backend:latest
 
       - name: Trigger Render Deploy
         run: curl -s "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" -X POST -d ""
